@@ -1,7 +1,7 @@
 streamlit
 numpy
 tifffile
-opencv-python #
+opencv-python 
 cellpose     
 scikit-image  
 matplotlib    
