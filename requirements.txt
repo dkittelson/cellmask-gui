@@ -6,3 +6,4 @@ matplotlib
 cellpose
 pathlib
 cv2
+traceback
