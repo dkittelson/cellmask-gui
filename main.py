@@ -134,10 +134,8 @@ with col1:
                     )
                     # Save colored mask if cells found
                     if batch_cytoplasm_masks is not None:
-                        batch_mask_display = np.zeros((batch_cytoplasm_masks.shape[0], batch_cytoplasm_masks.shape[1], 3), dtype=np.uint8)
-                        for i in range(1, batch_cytoplasm_masks.max() + 1):
-                            batch_mask_display[batch_cytoplasm_masks == i] = np.random.randint(0, 255, 3)
-                        save_masks(img_path_str, batch_mask_display)
+                        # Save the grayscale mask with unique IDs (not the color display)
+                        save_masks(img_path_str, batch_cytoplasm_masks) 
                         saved_count += 1
                     else:
                         skipped_count += 1 # No cells detected
@@ -197,11 +195,8 @@ with col2:
                 # Save button action (single image)
                 if save_button:
                     with st.spinner("Saving mask..."):
-                        # Regenerate solid mask for saving
-                        mask_to_save = np.zeros((cytoplasm_masks.shape[0], cytoplasm_masks.shape[1], 3), dtype=np.uint8)
-                        for i in range(1, cytoplasm_masks.max() + 1):
-                           mask_to_save[cytoplasm_masks == i] = np.random.randint(0, 255, 3)
-                        output_path = save_masks(selected_image_str, mask_to_save)
+                        # Save the grayscale mask with unique IDs
+                        output_path = save_masks(selected_image_str, cytoplasm_masks) 
                         st.success(f"Mask saved: {output_path}")
 
                     # Remove image & advance/reset
